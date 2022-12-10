@@ -2,10 +2,18 @@ import java.util.ArrayList;
 
 public class TechnionTournament implements Tournament{
 
+    TwoThreeTree PlayerTree; //tree of all players
+    TwoThreeTree FacultyTree; // tree of faculties
+    TwoThreeTree TeamTree; //tree of players on the team, each team has a tree
+
+
     TechnionTournament(){};
 
     @Override
     public void init() {
+        //initialize tournament tree
+        //initialize player tree
+
 
     }
 

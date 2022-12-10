@@ -1,6 +1,6 @@
 
 
-public class KeyVal implements Comparable<KeyVal> {
+public class KeyVal implements Comparable<KeyVal>{
     protected int key;
     protected int val;
 

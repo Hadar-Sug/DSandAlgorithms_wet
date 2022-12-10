@@ -2,21 +2,43 @@ public class TreeNode {
     //---------------------members
     TreeNode[] children;
     TreeNode parent;
-    int degree;
-    protected KeyVal keyVal; //key =main data, value = based on order of node input
+//    int degree;
+    int size;
+    protected KeyVal keyVal; //key =main data (goals,points etc.), value = ID
     public static int L = 0;
     public static int M = 1;
     public static int R = 2;
     //-------------------------
 
-    //default constructor
+    public TreeNode(TreeNode[] children, int size, KeyVal keyVal) {
+        this.children = children;
+        this.size = size;
+        this.keyVal = keyVal;
+    }
+
+//    default constructor
     public TreeNode() {
         children = new TreeNode[3];
         for (int i = 0; i <2;i++)
             children[i] = null;
         parent = null;
-        degree = 0;
+//        degree = 0;
+        size = 0;
     }
+
+    public TreeNode(KeyVal keyVal) {
+        new TreeNode();
+        this.keyVal = keyVal;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     public TreeNode[] getChildren() {
         return this.children;
     }
@@ -69,13 +91,13 @@ public class TreeNode {
         this.parent = parent;
     }
 
-    public int getDegree() {
-        return degree;
-    }
+//    public int getDegree() {
+//        return degree;
+//    }
 
-    public void setDegree(int degree) {
-        this.degree = degree;
-    }
+//    public void setDegree(int degree) {
+//        this.degree = degree;
+//    }
 
     public void setKeyVal(int key, int val) {
         this.keyVal.setKey(key);

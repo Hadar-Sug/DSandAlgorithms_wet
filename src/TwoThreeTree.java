@@ -1,34 +1,48 @@
+import java.util.LinkedList;
 
-
-public class TwoThreeTree<node extends TreeNode> {
-    node root;
+public class TwoThreeTree {
+    //----------members
+    DoublyLinkedList rankings = new DoublyLinkedList();
+    TreeNode root;
     Leaf sentinel_l;
     Leaf sentinel_r;
-    static int nodeCount = 0;
     public static int L = 0;
     public static int M = 1;
     public static int R = 2;
+    //--------------
 
-    public node getRoot() {
-        return root;
-    }
-
-    public void setRoot(node root) {
-        this.root = root;
-    }
-
-    public TwoThreeTree(node root) {
-        root.setVal(nodeCount++);
-        this.root = root;
+    //-------------methods
+    /**
+     * default constructor
+     */
+    public TwoThreeTree() {
+        // initialize sentinels
         this.sentinel_r = new Leaf();
         this.sentinel_l = new Leaf();
-        this.sentinel_r.setKeyVal(Constants.MAX_VALUE,nodeCount);
-        this.sentinel_l.setKeyVal(Constants.MIN_VALUE,nodeCount);
+        this.sentinel_r.setSize(0);// leaf size is default 1
+        this.sentinel_l.setSize(0);
+        this.sentinel_r.setKeyVal(Constants.MAX_VALUE,0);
+        this.sentinel_l.setKeyVal(Constants.MIN_VALUE,0);
         sentinel_l.setParent(this.root);
         sentinel_r.setParent(this.root);
-        this.root.setKey(sentinel_r.getKey());
+        TreeNode[] sentinels = new TreeNode[]{sentinel_l,sentinel_r,null};
+        // initialize root
+        this.root = new TreeNode();
+        this.root.setChildren(sentinels);
+        this.root.setKeyVal(sentinel_r.getKeyVal());
+//        //initialize the rankings list
+//        this.rankings.setHead(sentinel_l.getTwin());
+//        this.rankings.setTail(sentinel_r.getTwin());
+
     }
 
+    /**
+     * searches the tree starting at the given node x for the given key, and returns the TreeNode
+     * containing the key if it is found, or null if the key is not found
+     * @param x root of a tree were searching in
+     * @param key keyval of who were searching for
+     * @return TreeNode object we're looking for, or null if doesnt exist
+     */
     public TreeNode Search(TreeNode x, KeyVal key) {
         if (x instanceof Leaf){
             if (x.getKeyVal() == key) {
@@ -46,14 +60,39 @@ public class TwoThreeTree<node extends TreeNode> {
             return Search(x.getChild(R),key);
     }
 
-    private void updateKey(TreeNode x) {
+    /**
+     * updates the key and size of the given TreeNode x by setting the key to the
+     * largest key in the subtree rooted at x, and setting the size to the sum of the sizes of the
+     * children of x.
+     * @param x node we're updating
+     */
+    private void updateKeyAndSize(TreeNode x) {
         x.keyVal = x.children[L].getKeyVal();
-        if (x.children[M] != null)
+        int size = 0;
+        if (x.children[M] != null) {
             x.keyVal = x.children[M].getKeyVal();
-        if (x.children[R] != null)
+//            x.setDegree(2);
+        }
+        if (x.children[R] != null) {
             x.keyVal = x.children[R].getKeyVal();
+//            x.setDegree(3);
+        }
+        for (TreeNode child : x.children) {
+            if (child != null) {
+                size += child.getSize();
+            }
+        }
+        x.setSize(size);
     }
 
+    /**
+     * sets the children of the given TreeNode root to the given left, middle, and right nodes.
+     * It also sets the parent of each of the children to root, and updates the key and size of root
+     * @param root set this nodes children
+     * @param left left child node to be set
+     * @param middle middle child node to be set
+     * @param right right child node to be set
+     */
     private void setchildren(TreeNode root, TreeNode left, TreeNode middle, TreeNode right) {
         TreeNode[] children = new TreeNode[]{left,middle,right};
         root.setChildren(children);
@@ -61,7 +100,7 @@ public class TwoThreeTree<node extends TreeNode> {
             if (child!=null)
                 child.setParent(root);
         }
-        updateKey(root);
+        updateKeyAndSize(root);
 //        for (int i = 0; i <2; i++) {
 //            root.setChild(left,i);
 //        }
@@ -71,6 +110,14 @@ public class TwoThreeTree<node extends TreeNode> {
 //            right.setParent(root);
     }
 
+    /**
+     * inserts the given TreeNode insertMe into the given TreeNode root. If root has space
+     * for the new node, it is inserted into the appropriate spot in the children.
+     * If root is full, it is split into two nodes
+     * @param root node were inserting to
+     * @param insertMe node were inserting
+     * @return null if there was roon, new node if it was split
+     */
     private TreeNode insertAndSplit(TreeNode root,TreeNode insertMe){
         if (root.getChild(R) == null){//there's space, so lets find the right spot for insertMe
             if (insertMe.getKeyVal().compareTo(root.getChild(L).getKeyVal()) <0 ) // insertme,L,M
@@ -99,28 +146,162 @@ public class TwoThreeTree<node extends TreeNode> {
         }
     }
 
-    public void insert(TwoThreeTree<node> T, TreeNode insertMe){
-        TreeNode y = T.getRoot();
-        while(!(y instanceof  Leaf)){ //risky converions with leaf and such
+    /**
+     * // insert inserts the given TreeNode insertMe into the tree. It does this by navigating down the tree
+     * to the correct leaf node where insertMe should be inserted, creating a new Leaf object to hold
+     * insertMe, and then splitting the nodes in the tree as necessary to make room for the new Leaf.
+     * Finally, it uses the placeInList method to insert the new Leaf into the doubly linked list of
+     * Leaf objects in the tree.
+     * @param insertMe node to be inserted
+     */
+    public void insert(TreeNode insertMe){
+        TreeNode y = this.getRoot();//T.getRoot();
+        while(!(y instanceof  Leaf)){ //risky converions with leaf ?
             if (insertMe.getKeyVal().compareTo(y.getChild(L).getKeyVal())<0)
                 y = y.getChild(L);
             else if (insertMe.getKeyVal().compareTo(y.getChild(M).getKeyVal())<0)
                 y = y.getChild(M);
             else y=y.getChild(R);
         }
-        TreeNode x = y.getParent();
-        insertMe = insertAndSplit(x,insertMe);
-        while (x.getKeyVal().compareTo(T.getRoot().keyVal)!=0){
+        TreeNode x = y.getParent(); //x is one level aboce the leaves, and thats where insertMe fits
+        Leaf newLeaf = new Leaf(insertMe); // our new node is going to be a leaf no matter what
+        insertMe = insertAndSplit(x,newLeaf);
+        while (x.getKeyVal().compareTo(this.getRoot().keyVal)!=0){
             x = x.getParent();
-            if (insertMe != null)
+            if (insertMe != null) // needed to split, so we go up the tree till we find a spot
                 insertMe = insertAndSplit(x,insertMe);
-            else updateKey(x);
+            else { //
+                updateKeyAndSize(x);
+            }
         }
         if (insertMe!=null){
             TreeNode newRoot = new TreeNode();
             setchildren(newRoot,x,insertMe,null);
-            T.setRoot((node)newRoot); // ugh bad
+            this.setRoot(newRoot);
+        }
+        placeInList(newLeaf); // place our new leaf in the correct place
+    }
+
+    /**
+     * placeInList inserts the given Leaf addMe into the doubly linked list of Leaf objects in the tree.
+     * @param addMe leaf to be inserted
+     */
+    protected void placeInList(Leaf addMe){
+        int rank = Rank(addMe);
+        Leaf prev = selectKthLeaf(this.root,rank-1); //may be null, its ok
+        this.getRankings().addNode(addMe.getTwin(),prev.getTwin());
+    }
+
+    /**
+     * returns the rank of the given TreeNode x in the tree.
+     * The rank is the number of Leaf objects
+     * in the tree with keys less than the key of x.
+     * @param x node were looking the rank of
+     * @return returns the rank of the given TreeNode x in the tree
+     */
+    public int Rank(TreeNode x){
+        int rank = 1;
+        TreeNode y = x.getParent();
+        while(y!=null){
+            if(x.getKeyVal().compareTo(y.getChild(M).getKeyVal())==0)
+                rank+=y.getChild(L).getSize();
+            else if(x.getKeyVal().compareTo(y.getChild(R).getKeyVal())==0)
+                rank+=(y.getChild(L).getSize() + y.getChild(L).getSize());
+            x=y;
+            y=y.getParent();
+        }
+        return rank;
+    }
+
+    /**
+     * @param x root of the tree we're searching for x in
+     * @param k the rank we're searching for
+     * @return returns the kth-ranked Leaf object in the tree
+     */
+    public Leaf selectKthLeaf(TreeNode x, int k){
+        if (x.getSize()<k)
+            return null;
+        if (x instanceof Leaf)
+            return (Leaf) x;
+        int leftSize = x.getChild(L).getSize();
+        int leftMiddleSize = x.getChild(L).getSize()+x.getChild(M).getSize();
+        if (k<=leftSize)
+            return selectKthLeaf(x.getChild(L),k);
+        else if (k<=leftMiddleSize)
+            return selectKthLeaf(x.getChild(M),k-leftSize);
+        else return selectKthLeaf(x.getChild(R),k-leftMiddleSize);
+    }
+
+    /**
+     * borrows a child from a sibling of y if possible, or merges y with one of its siblings
+     * if necessary.
+     * @param y node were borrowing or merging
+     * @return the parent of y after the borrow or merge operation is complete
+     */
+    private TreeNode borrowOrMerge(TreeNode y){
+        TreeNode z =y.getParent();
+        if (y.getKeyVal().compareTo(z.getChild(L).getKeyVal())!=0){
+            TreeNode x = z.getChild(M);
+            if(x.getChild(R)!=null){
+                setchildren(y,y.getChild(L),x.getChild(L),null);
+                setchildren(x,x.getChild(M),x.getChild(R),null);
+            }
+            else{
+                setchildren(x,x.getChild(L),x.getChild(M),y.getChild(L));
+                y=null;
+                setchildren(z,x,z.getChild(R),null);
+            }
+            return z;
+        }
+        TreeNode x=z.getChild(M);
+        if(x.getChild(R)!=null){
+            setchildren(y,x.getChild(R),y.getChild(L),null);
+            setchildren(x,x.getChild(L),x.getChild(M),null);
+        }
+        else{
+            setchildren(x,x.getChild(L),x.getChild(M),y.getChild(L));
+            y=null;
+            setchildren(z,z.getChild(L),x,null);
+        }
+        return z;
+    }
+
+    public void Delete(Leaf deleteMe){
+        getRankings().removeNode(deleteMe.getTwin());
+        TreeNode y = deleteMe.getParent();
+        if (deleteMe.getKeyVal().compareTo(y.getChild(L).getKeyVal())!=0)
+            setchildren(y,y.getChild(M),y.getChild(R),null);
+        else if (deleteMe.getKeyVal().compareTo(y.getChild(M).getKeyVal())!=0)
+            setchildren(y,y.getChild(L),y.getChild(R),null);
+        else setchildren(y,y.getChild(L),y.getChild(M),null);
+        deleteMe = null;
+        while (y!=null){
+            if (y.getChild(M)==null){
+                if (y!=root)
+                    y=borrowOrMerge(y);
+                else{
+                    setRoot(y.getChild(L));
+                    y.getChild(L).setParent(null);
+                    y=null;
+                    return;
+                }
+            }
+            else{
+                updateKeyAndSize(y);
+                y=y.getParent();
+            }
         }
     }
 
+    public DoublyLinkedList getRankings() {
+        return rankings;
+    }
+
+    public TreeNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(TreeNode root) {
+        this.root = root;
+    }
 }
