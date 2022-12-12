@@ -5,6 +5,13 @@ public class ListNode<T>{
     private KeyVal keyVal;
     private T metaData;
 
+    public T getMetaData() {
+        return metaData;
+    }
+
+    public void setMetaData(T metaData) {
+        this.metaData = metaData;
+    }
 
     // Constructor for the Node class
     public ListNode(T metaData) {

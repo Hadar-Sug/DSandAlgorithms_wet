@@ -15,7 +15,7 @@ public class Leaf<T> extends TreeNode{
         super();
         this.size=1;
         rankTwin = new ListNode<T>(metaData);
-        this.twin = new Leaf<T>();
+        this.twin = new Leaf<T>(); // maybe redundant
 //        this.twin.setMetaData(metaData);
         this.metaData = metaData;
     }

@@ -41,10 +41,10 @@ public class TwoThreeTree<T> {
      * @param key keyval of who were searching for
      * @return TreeNode object we're looking for, or null if doesnt exist
      */
-    public TreeNode Search(TreeNode x, KeyVal key) {
+    public Leaf<T> Search(TreeNode x, KeyVal key) {
         if (x instanceof Leaf){
             if (x.getKeyVal() == key) {
-                return x;
+                return (Leaf<T>) x;
             }
             else return null;
         }
@@ -267,6 +267,7 @@ public class TwoThreeTree<T> {
         return z;
     }
 
+    //TODO: make sure this doesnt delete the object itself, just remove it from the tree
     public void Delete(Leaf<T> deleteMe){
         getRankings().removeNode(deleteMe.getRankTwin());
         TreeNode y = deleteMe.getParent();
