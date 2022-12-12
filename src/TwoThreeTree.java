@@ -1,11 +1,9 @@
-import java.util.LinkedList;
-
-public class TwoThreeTree {
+public class TwoThreeTree<T> {
     //----------members
-    DoublyLinkedList rankings = new DoublyLinkedList();
+    DoublyLinkedList<T> rankings = new DoublyLinkedList<T>();
     TreeNode root;
-    Leaf sentinel_l;
-    Leaf sentinel_r;
+    Leaf<T> sentinel_l;
+    Leaf<T> sentinel_r;
     public static int L = 0;
     public static int M = 1;
     public static int R = 2;
@@ -17,8 +15,8 @@ public class TwoThreeTree {
      */
     public TwoThreeTree() {
         // initialize sentinels
-        this.sentinel_r = new Leaf();
-        this.sentinel_l = new Leaf();
+        this.sentinel_r = new Leaf<T>();
+        this.sentinel_l = new Leaf<T>();
         this.sentinel_r.setSize(0);// leaf size is default 1
         this.sentinel_l.setSize(0);
         this.sentinel_r.setKeyVal(Constants.MAX_VALUE,0);
@@ -154,7 +152,8 @@ public class TwoThreeTree {
      * Leaf objects in the tree.
      * @param insertMe node to be inserted
      */
-    public void insert(TreeNode insertMe){
+    //TODO: maybe need to recieve a leaf in the first place
+    public void insert(Leaf<T> insertMe){
         TreeNode y = this.getRoot();//T.getRoot();
         while(!(y instanceof  Leaf)){ //risky converions with leaf ?
             if (insertMe.getKeyVal().compareTo(y.getChild(L).getKeyVal())<0)
@@ -164,32 +163,32 @@ public class TwoThreeTree {
             else y=y.getChild(R);
         }
         TreeNode x = y.getParent(); //x is one level aboce the leaves, and thats where insertMe fits
-        Leaf newLeaf = new Leaf(insertMe); // our new node is going to be a leaf no matter what
-        insertMe = insertAndSplit(x,newLeaf);
+//        Leaf newLeaf = new Leaf(insertMe); // our new node is going to be a leaf no matter what
+        TreeNode z = insertAndSplit(x,insertMe);
         while (x.getKeyVal().compareTo(this.getRoot().keyVal)!=0){
             x = x.getParent();
-            if (insertMe != null) // needed to split, so we go up the tree till we find a spot
-                insertMe = insertAndSplit(x,insertMe);
+            if (z != null) // needed to split, so we go up the tree till we find a spot
+                z = insertAndSplit(x,z);
             else { //
                 updateKeyAndSize(x);
             }
         }
         if (insertMe!=null){
             TreeNode newRoot = new TreeNode();
-            setchildren(newRoot,x,insertMe,null);
+            setchildren(newRoot,x,z,null);
             this.setRoot(newRoot);
         }
-        placeInList(newLeaf); // place our new leaf in the correct place
+        placeInList(insertMe); // place our new leaf in the correct place
     }
 
     /**
      * placeInList inserts the given Leaf addMe into the doubly linked list of Leaf objects in the tree.
      * @param addMe leaf to be inserted
      */
-    protected void placeInList(Leaf addMe){
+    protected void placeInList(Leaf<T> addMe){
         int rank = Rank(addMe);
-        Leaf prev = selectKthLeaf(this.root,rank-1); //may be null, its ok
-        this.getRankings().addNode(addMe.getTwin(),prev.getTwin());
+        Leaf<T> prev = selectKthLeaf(this.root,rank-1); //may be null, its ok
+        this.getRankings().addNode(addMe.getRankTwin(),prev.getRankTwin());
     }
 
     /**
@@ -214,15 +213,17 @@ public class TwoThreeTree {
     }
 
     /**
+     * returns the kth-ranked Leaf object in the tree
      * @param x root of the tree we're searching for x in
      * @param k the rank we're searching for
      * @return returns the kth-ranked Leaf object in the tree
      */
-    public Leaf selectKthLeaf(TreeNode x, int k){
+    //risky conversion?
+    public Leaf<T> selectKthLeaf(TreeNode x, int k){
         if (x.getSize()<k)
             return null;
         if (x instanceof Leaf)
-            return (Leaf) x;
+            return (Leaf<T>) x;
         int leftSize = x.getChild(L).getSize();
         int leftMiddleSize = x.getChild(L).getSize()+x.getChild(M).getSize();
         if (k<=leftSize)
@@ -266,8 +267,8 @@ public class TwoThreeTree {
         return z;
     }
 
-    public void Delete(Leaf deleteMe){
-        getRankings().removeNode(deleteMe.getTwin());
+    public void Delete(Leaf<T> deleteMe){
+        getRankings().removeNode(deleteMe.getRankTwin());
         TreeNode y = deleteMe.getParent();
         if (deleteMe.getKeyVal().compareTo(y.getChild(L).getKeyVal())!=0)
             setchildren(y,y.getChild(M),y.getChild(R),null);
@@ -293,7 +294,7 @@ public class TwoThreeTree {
         }
     }
 
-    public DoublyLinkedList getRankings() {
+    public DoublyLinkedList<T> getRankings() {
         return rankings;
     }
 

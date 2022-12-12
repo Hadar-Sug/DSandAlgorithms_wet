@@ -26,9 +26,10 @@ public class TreeNode {
         size = 0;
     }
 
-    public TreeNode(KeyVal keyVal) {
+    public TreeNode(int key,int val) {
+        KeyVal thisKeyVal = new KeyVal(key,val);
         new TreeNode();
-        this.keyVal = keyVal;
+        this.keyVal = thisKeyVal;
     }
 
     public int getSize() {
