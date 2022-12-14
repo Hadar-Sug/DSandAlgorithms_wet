@@ -1,6 +1,6 @@
 public class DoublyLinkedList<T> {
-    private ListNode<T> head;
-    private ListNode<T> tail;
+    private ListNode head;
+    private ListNode tail;
 
     // Constructor for the DoublyLinkedList class
     public DoublyLinkedList() {
@@ -8,7 +8,7 @@ public class DoublyLinkedList<T> {
         this.tail = null;
     }
 
-    protected void removeNode(ListNode<T> removeMe) {
+    protected void removeNode(ListNode removeMe) {
         if (removeMe == head) {
             // Handle case where the node to remove is the head
             head = head.getNext();
@@ -19,14 +19,14 @@ public class DoublyLinkedList<T> {
             tail.setNext(null);
         } else {
             // Handle case where the node to remove is in the middle of the list
-            ListNode<T> prevNode = removeMe.getPrev();
-            ListNode<T> nextNode = removeMe.getNext();
+            ListNode prevNode = removeMe.getPrev();
+            ListNode nextNode = removeMe.getNext();
             prevNode.setNext(nextNode);
             nextNode.setPrev(prevNode);
         }
     }
 
-    public void addNode(ListNode<T> insertMe, ListNode<T> afterMe) {
+    public void addNode(ListNode insertMe, ListNode afterMe) {
         if (head == null) {
             // Handle case where the list is empty or the 'afterMe' node is null
             addNode(insertMe);
@@ -38,7 +38,7 @@ public class DoublyLinkedList<T> {
         }
         else {
             // Handle case where the list is not empty and the 'afterMe' node is not null
-            ListNode<T> nextNode = afterMe.getNext();
+            ListNode nextNode = afterMe.getNext();
             afterMe.setNext(insertMe);
             insertMe.setPrev(afterMe);
             insertMe.setNext(nextNode);
@@ -46,7 +46,7 @@ public class DoublyLinkedList<T> {
         }
     }
 
-    protected void addNode(ListNode<T> addMe) {
+    protected void addNode(ListNode addMe) {
         if (head == null) {
             // Handle case where the list is empty
             setHead(addMe);
@@ -59,19 +59,19 @@ public class DoublyLinkedList<T> {
         }
     }
 
-    public ListNode<T> getHead() {
+    public ListNode getHead() {
         return head;
     }
 
-    public void setHead(ListNode<T> head) {
+    public void setHead(ListNode head) {
         this.head = head;
     }
 
-    public ListNode<T> getTail() {
+    public ListNode getTail() {
         return tail;
     }
 
-    public void setTail(ListNode<T> tail) {
+    public void setTail(ListNode tail) {
         this.tail = tail;
     }
 }

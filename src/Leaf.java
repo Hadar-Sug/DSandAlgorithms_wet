@@ -1,8 +1,9 @@
 public class Leaf<T> extends TreeNode{
 
-    ListNode<T> rankTwin;
+    ListNode rankTwin;
     Leaf<T> twin; // will point to the twin in either the goal/points matching tree
     T metaData; // the type, and actual object of the node (player/faculty/tree...)
+    String name = null;
 
 
     //only for sentinels and twins
@@ -12,9 +13,7 @@ public class Leaf<T> extends TreeNode{
     }
 
     public Leaf(T metaData){
-        super();
-        this.size=1;
-        rankTwin = new ListNode<T>(metaData);
+        this();
         this.twin = new Leaf<T>(); // maybe redundant
 //        this.twin.setMetaData(metaData);
         this.metaData = metaData;
@@ -24,6 +23,13 @@ public class Leaf<T> extends TreeNode{
         this(metaData);
         this.keyVal.setKey(key);
         this.keyVal.setVal(val);
+        this.rankTwin = new ListNode(key,val);
+    }
+
+    public Leaf(T metaData, int key, int val, String name){
+        this(metaData,key,val);
+        this.rankTwin.setName(name);
+        this.name = name;
     }
 
     public Leaf(TreeNode node){
@@ -31,11 +37,11 @@ public class Leaf<T> extends TreeNode{
         getRankTwin().setKeyVal(node.getKeyVal()); //set the Keyval to be the same for the twin node in the list
     }
 
-    public ListNode<T> getRankTwin() {
+    public ListNode getRankTwin() {
         return rankTwin;
     }
 
-    public void setRankTwin(ListNode<T> rankTwin) {
+    public void setRankTwin(ListNode rankTwin) {
         this.rankTwin = rankTwin;
     }
 
