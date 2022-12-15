@@ -44,7 +44,7 @@ public class TwoThreeTree<T> {
      */
     public Leaf<T> Search(TreeNode x, KeyVal key) {
         if (x instanceof Leaf){
-            if (x.getKeyVal() == key) {
+            if (x.getKeyVal().compareTo(key) == 0) {
                 return (Leaf<T>) x;
             }
             else return null;
@@ -191,7 +191,10 @@ public class TwoThreeTree<T> {
             return;
         int rank = Rank(addMe);
         Leaf<T> prev = selectKthLeaf(this.root,rank-1); //may be null, its ok
-        this.getRankings().addNode(addMe.getRankTwin(),prev.getRankTwin());
+        if (prev != null)
+            this.getRankings().addNode(addMe.getRankTwin(),prev.getRankTwin());
+        else
+            this.getRankings().addNode(addMe.getRankTwin());
     }
 
     /**

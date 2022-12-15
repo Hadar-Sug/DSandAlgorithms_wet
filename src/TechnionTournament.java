@@ -288,7 +288,7 @@ public class TechnionTournament implements Tournament{
      */
     private Leaf<TwoThreeTree<Player>> getTeamLeaf(int faculty_id){
         KeyVal FacultyKeyVal = new KeyVal(0,faculty_id);
-        return FacultiesTreesByID.Search(FacultiesTreesByID.getRoot(),FacultyKeyVal);
+        return FacultiesTreesByID.Search(FacultiesTreesByID.getRoot(), FacultyKeyVal);
     }
 
     //TODO: fix to get the correct leaf depending on the tree
