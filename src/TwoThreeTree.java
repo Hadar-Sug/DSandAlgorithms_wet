@@ -7,6 +7,9 @@ public class TwoThreeTree<T> {
     public static int L = 0;
     public static int M = 1;
     public static int R = 2;
+
+    public static int MAX_VALUE = 2147483647;
+    public static int MIN_VALUE = -2147483648;
     //--------------
 
     //-------------methods
@@ -15,17 +18,15 @@ public class TwoThreeTree<T> {
      */
     public TwoThreeTree() {
         // initialize sentinels
-        this.sentinel_r = new Leaf<T>();
-        this.sentinel_l = new Leaf<T>();
+        this.sentinel_r = new Leaf<T>(null,MAX_VALUE,0);
+        this.sentinel_l = new Leaf<T>(null,MIN_VALUE,0);
         this.sentinel_r.setSize(0);// leaf size is default 1
         this.sentinel_l.setSize(0);
-        this.sentinel_r.setKeyVal(Constants.MAX_VALUE,0);
-        this.sentinel_l.setKeyVal(Constants.MIN_VALUE,0);
+        this.root = new TreeNode();
         sentinel_l.setParent(this.root);
         sentinel_r.setParent(this.root);
         TreeNode[] sentinels = new TreeNode[]{sentinel_l,sentinel_r,null};
         // initialize root
-        this.root = new TreeNode();
         this.root.setChildren(sentinels);
         this.root.setKeyVal(sentinel_r.getKeyVal());
 //        //initialize the rankings list
@@ -128,17 +129,17 @@ public class TwoThreeTree<T> {
         else { // no space so we gotta split as such:
             TreeNode newRoot = new TreeNode();
             if (insertMe.getKeyVal().compareTo(root.getChild(L).getKeyVal()) < 0) { // insertme,L,M,R
+                setchildren(newRoot, root.getChild(M), root.getChild(R), null);
                 setchildren(root, insertMe, root.getChild(L), null);
-                setchildren(newRoot, root.getChild(M), root.getChild(R), null);
             } else if (insertMe.getKeyVal().compareTo(root.getChild(M).getKeyVal()) < 0) { // L,insertme,M,R
-                setchildren(root, root.getChild(L), insertMe, null);
                 setchildren(newRoot, root.getChild(M), root.getChild(R), null);
+                setchildren(root, root.getChild(L), insertMe, null);
             } else if (insertMe.getKeyVal().compareTo(root.getChild(R).getKeyVal()) < 0) {// L,M,insertme,R
-                setchildren(root, root.getChild(L), root.getChild(M), null);
                 setchildren(newRoot, insertMe, root.getChild(R), null);
+                setchildren(root, root.getChild(L), root.getChild(M), null);
             } else {
-                setchildren(root, root.getChild(L), root.getChild(M), null); //L,M,R,insertme
                 setchildren(newRoot, root.getChild(R), insertMe, null);
+                setchildren(root, root.getChild(L), root.getChild(M), null); //L,M,R,insertme
             }
             return newRoot;
         }
@@ -173,7 +174,7 @@ public class TwoThreeTree<T> {
                 updateKeyAndSize(x);
             }
         }
-        if (insertMe!=null){
+        if (z!=null){
             TreeNode newRoot = new TreeNode();
             setchildren(newRoot,x,z,null);
             this.setRoot(newRoot);
@@ -267,7 +268,7 @@ public class TwoThreeTree<T> {
         return z;
     }
 
-    //TODO: make sure this doesnt delete the object itself, just remove it from the tree
+
     public void Delete(Leaf<T> deleteMe){
         getRankings().removeNode(deleteMe.getRankTwin());
         TreeNode y = deleteMe.getParent();

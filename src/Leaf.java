@@ -21,8 +21,7 @@ public class Leaf<T> extends TreeNode{
 
     public Leaf(T metaData, int key, int val) {
         this(metaData);
-        this.keyVal.setKey(key);
-        this.keyVal.setVal(val);
+        this.keyVal = new KeyVal(key,val);
         this.rankTwin = new ListNode(key,val);
     }
 
@@ -30,6 +29,15 @@ public class Leaf<T> extends TreeNode{
         this(metaData,key,val);
         this.rankTwin.setName(name);
         this.name = name;
+    }
+
+    public Leaf<T> copyLeaf() {
+        Leaf<T> newLeaf = new Leaf<>();
+        newLeaf.rankTwin = this.rankTwin;
+        newLeaf.twin = this.twin;
+        newLeaf.metaData = this.metaData;
+        newLeaf.name = this.name;
+        return newLeaf;
     }
 
     public Leaf(TreeNode node){
