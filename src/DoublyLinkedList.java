@@ -42,7 +42,8 @@ public class DoublyLinkedList<T> {
             afterMe.setNext(insertMe);
             insertMe.setPrev(afterMe);
             insertMe.setNext(nextNode);
-            nextNode.setPrev(insertMe);
+            if (nextNode != null)
+                nextNode.setPrev(insertMe);
         }
     }
 
