@@ -187,6 +187,8 @@ public class TwoThreeTree<T> {
      * @param addMe leaf to be inserted
      */
     protected void placeInList(Leaf<T> addMe){
+        if (addMe.getKeyVal().getKey() == MAX_VALUE || addMe.getKeyVal().getKey() == MIN_VALUE)
+            return;
         int rank = Rank(addMe);
         Leaf<T> prev = selectKthLeaf(this.root,rank-1); //may be null, its ok
         this.getRankings().addNode(addMe.getRankTwin(),prev.getRankTwin());
@@ -205,8 +207,12 @@ public class TwoThreeTree<T> {
         while(y!=null){
             if(x.getKeyVal().compareTo(y.getChild(M).getKeyVal())==0)
                 rank+=y.getChild(L).getSize();
-            else if(x.getKeyVal().compareTo(y.getChild(R).getKeyVal())==0)
-                rank+=(y.getChild(L).getSize() + y.getChild(L).getSize());
+            else {
+                if ( y.getChild(R) != null){
+                    if(x.getKeyVal().compareTo(y.getChild(R).getKeyVal())==0)
+                        rank+=(y.getChild(L).getSize() + y.getChild(L).getSize());
+                }
+            }
             x=y;
             y=y.getParent();
         }

@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="faculties by goals tree holds info about the faculties points, and each tree holds the goalTree for tha faculty.&#10;faculty by id tree holds info only by Id, and each player tree is by ID.&#10;&#10;changed ListNode to non generic and no need for metadata there.&#10;&#10;fixed remove faculty and top scorer methods">
+    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="finished writing code&#10;let the debugging begin!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Leaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Leaf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TechnionTournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TechnionTournament.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TwoThreeTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TwoThreeTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +49,20 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="DSandAlgorithms_wet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -60,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670577526093</updated>
-      <workItem from="1670577526904" duration="102583000" />
+      <workItem from="1670577526904" duration="103964000" />
     </task>
     <task id="LOCAL-00001" summary="first try at generic 2-3tree, seems like a big issue actually. hopefully not too bad.">
       <created>1670606513026</created>
@@ -97,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671041727689</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="finished writing code&#10;let the debugging begin!">
+      <created>1671115809327</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671115809327</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,7 +128,8 @@
     <MESSAGE value="comments in tournament, some implementations too" />
     <MESSAGE value="some methods done, waiting for answers about player insertion.&#10;need to figure out how to update faculties in the arraylist in gettopKfaculties" />
     <MESSAGE value="faculties by goals tree holds info about the faculties points, and each tree holds the goalTree for tha faculty.&#10;faculty by id tree holds info only by Id, and each player tree is by ID.&#10;&#10;changed ListNode to non generic and no need for metadata there.&#10;&#10;fixed remove faculty and top scorer methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="faculties by goals tree holds info about the faculties points, and each tree holds the goalTree for tha faculty.&#10;faculty by id tree holds info only by Id, and each player tree is by ID.&#10;&#10;changed ListNode to non generic and no need for metadata there.&#10;&#10;fixed remove faculty and top scorer methods" />
+    <MESSAGE value="finished writing code&#10;let the debugging begin!" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished writing code&#10;let the debugging begin!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -119,6 +138,16 @@
           <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
           <line>63</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/TwoThreeTree.java</url>
+          <line>204</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/TwoThreeTree.java</url>
+          <line>193</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
