@@ -1,3 +1,4 @@
+
 public class Leaf<T> extends TreeNode{
 
     ListNode rankTwin;
@@ -31,12 +32,36 @@ public class Leaf<T> extends TreeNode{
         this.name = name;
     }
 
+//    public Leaf(Leaf<T> other) {
+//        // make a deep copy of the rankTwin field
+//        this.rankTwin = new ListNode(other.rankTwin);
+//        // make a deep copy of the twin field
+//        this.twin = new Leaf<T>(other.twin);
+//        // make a deep copy of the metaData field
+//        this.metaData = deepCopy(other.metaData);
+//        // make a deep copy of the name field
+//        this.name = new String(other.name);
+//
+//        // make a deep copy of the parent field
+//        this.parent = new TreeNode(other.parent);
+//        // make a deep copy of the children array
+//        this.children = deepCopy(other.children);
+//        // make a deep copy of the size field
+//        this.size = new Integer(other.size);
+//        // make a deep copy of the keyVal field
+//        this.keyVal = deepCopy(other.keyVal);
+//    }
+
+
+
     public Leaf<T> copyLeaf() {
         Leaf<T> newLeaf = new Leaf<>();
         newLeaf.rankTwin = this.rankTwin;
         newLeaf.twin = this.twin;
         newLeaf.metaData = this.metaData;
         newLeaf.name = this.name;
+        newLeaf.keyVal = this.keyVal;
+        newLeaf.size = this.size;
         return newLeaf;
     }
 

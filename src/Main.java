@@ -27,6 +27,8 @@ public class Main {
         for (int i = 0; i < names.length; i++) {
             player.setId(i);
             player.setName(names[i]);
+            if(faculties_id[i] == 5 || faculties_id[i] == 6)
+                continue;
             tournament.addPlayerToFaculty(faculties_id[i],player);
         }
 
