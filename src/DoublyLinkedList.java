@@ -22,7 +22,8 @@ public class DoublyLinkedList<T> {
             ListNode prevNode = removeMe.getPrev();
             ListNode nextNode = removeMe.getNext();
             prevNode.setNext(nextNode);
-            nextNode.setPrev(prevNode);
+            if (nextNode != null)
+                nextNode.setPrev(prevNode);
         }
     }
 

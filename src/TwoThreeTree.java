@@ -251,7 +251,7 @@ public class TwoThreeTree<T> {
      */
     private TreeNode borrowOrMerge(TreeNode y){
         TreeNode z =y.getParent();
-        if (y.getKeyVal().compareTo(z.getChild(L).getKeyVal())!=0){
+        if (y.getKeyVal().compareTo(z.getChild(L).getKeyVal())==0){
             TreeNode x = z.getChild(M);
             if(x.getChild(R)!=null){
                 setchildren(y,y.getChild(L),x.getChild(L),null);
@@ -281,9 +281,9 @@ public class TwoThreeTree<T> {
     public void Delete(Leaf<T> deleteMe){
         getRankings().removeNode(deleteMe.getRankTwin());
         TreeNode y = deleteMe.getParent();
-        if (deleteMe.getKeyVal().compareTo(y.getChild(L).getKeyVal())!=0)
+        if (deleteMe.getKeyVal().compareTo(y.getChild(L).getKeyVal())==0)
             setchildren(y,y.getChild(M),y.getChild(R),null);
-        else if (deleteMe.getKeyVal().compareTo(y.getChild(M).getKeyVal())!=0)
+        else if (deleteMe.getKeyVal().compareTo(y.getChild(M).getKeyVal())==0)
             setchildren(y,y.getChild(L),y.getChild(R),null);
         else setchildren(y,y.getChild(L),y.getChild(M),null);
         deleteMe = null;
