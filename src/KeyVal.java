@@ -24,7 +24,7 @@ public class KeyVal implements Comparable<KeyVal>{
     public void setVal(int val) {
         this.val = val;
     }
-
+    //TODO: perhaps change the val comaprison order
     public int compareTo(KeyVal other) {
         if (this.key>other.key)
             return 1;

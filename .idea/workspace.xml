@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="things seem to be working, waiting on staff to fix their shit">
+    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="see todo in line 86 in main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/KeyVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeyVal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TechnionTournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TechnionTournament.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670577526093</updated>
-      <workItem from="1670577526904" duration="133131000" />
+      <workItem from="1670577526904" duration="134542000" />
     </task>
     <task id="LOCAL-00001" summary="first try at generic 2-3tree, seems like a big issue actually. hopefully not too bad.">
       <created>1670606513026</created>
@@ -172,7 +172,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671210032135</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="see todo in line 86 in main">
+      <created>1671225895264</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1671225895264</updated>
+    </task>
+    <task id="LOCAL-00016" summary="see todo in line 86 in main">
+      <created>1671226058025</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1671226058025</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +208,8 @@
     <MESSAGE value="fixed borrow or merge,&#10;prob an issue with copying the object" />
     <MESSAGE value="no more copying objects&#10;problem with input" />
     <MESSAGE value="things seem to be working, waiting on staff to fix their shit" />
-    <option name="LAST_COMMIT_MESSAGE" value="things seem to be working, waiting on staff to fix their shit" />
+    <MESSAGE value="see todo in line 86 in main" />
+    <option name="LAST_COMMIT_MESSAGE" value="see todo in line 86 in main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -210,14 +225,24 @@
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
           <line>224</line>
           <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>109</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -227,6 +252,7 @@
         <PinnedItemInfo parentTag="TechnionTournament" memberName="PlayersByGoals" />
         <PinnedItemInfo parentTag="TwoThreeTree" memberName="rankings" />
         <PinnedItemInfo parentTag="TechnionTournament" memberName="FacultiesTreesGoals" />
+        <PinnedItemInfo parentTag="TreeNode" memberName="children" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
