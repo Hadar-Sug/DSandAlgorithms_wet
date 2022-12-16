@@ -18,8 +18,8 @@ public class TwoThreeTree<T> {
      */
     public TwoThreeTree() {
         // initialize sentinels
-        this.sentinel_r = new Leaf<T>(null,MAX_VALUE,0);
-        this.sentinel_l = new Leaf<T>(null,MIN_VALUE,0);
+        this.sentinel_r = new Leaf<T>(MAX_VALUE,0);
+        this.sentinel_l = new Leaf<T>(MIN_VALUE,0);
         this.sentinel_r.setSize(0);// leaf size is default 1
         this.sentinel_l.setSize(0);
         this.root = new TreeNode();
@@ -191,7 +191,7 @@ public class TwoThreeTree<T> {
             return;
         int rank = Rank(addMe);
         Leaf<T> prev = selectKthLeaf(this.root,rank-1); //may be null, its ok
-        if (prev != null)
+        if (prev!= this.sentinel_l)
             this.getRankings().addNode(addMe.getRankTwin(),prev.getRankTwin());
         else
             this.getRankings().addNode(addMe.getRankTwin());
@@ -213,7 +213,7 @@ public class TwoThreeTree<T> {
             else {
                 if ( y.getChild(R) != null){
                     if(x.getKeyVal().compareTo(y.getChild(R).getKeyVal())==0)
-                        rank+=(y.getChild(L).getSize() + y.getChild(L).getSize());
+                        rank+=(y.getChild(L).getSize() + y.getChild(M).getSize());
                 }
             }
             x=y;
@@ -258,7 +258,7 @@ public class TwoThreeTree<T> {
                 setchildren(x,x.getChild(M),x.getChild(R),null);
             }
             else{
-                setchildren(x,y.getChild(L),x.getChild(L),y.getChild(M));
+                setchildren(x,y.getChild(L),x.getChild(L),x.getChild(M));
                 y=null;
                 setchildren(z,x,z.getChild(R),null);
             }

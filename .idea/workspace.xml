@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="fixed borrow or merge,&#10;prob an issue with copying the object">
+    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="no more copying objects&#10;problem with input">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Leaf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Leaf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TechnionTournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TechnionTournament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TwoThreeTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TwoThreeTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670577526093</updated>
-      <workItem from="1670577526904" duration="121704000" />
+      <workItem from="1670577526904" duration="128662000" />
     </task>
     <task id="LOCAL-00001" summary="first try at generic 2-3tree, seems like a big issue actually. hopefully not too bad.">
       <created>1670606513026</created>
@@ -157,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671178572209</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="no more copying objects&#10;problem with input">
+      <created>1671180536543</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1671180536543</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,28 +187,44 @@
     <MESSAGE value="maybe copying is the issue" />
     <MESSAGE value="problem with playGAme, and ranking is fucked" />
     <MESSAGE value="fixed borrow or merge,&#10;prob an issue with copying the object" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed borrow or merge,&#10;prob an issue with copying the object" />
+    <MESSAGE value="no more copying objects&#10;problem with input" />
+    <option name="LAST_COMMIT_MESSAGE" value="no more copying objects&#10;problem with input" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
-          <line>174</line>
-          <option name="timeStamp" value="55" />
+          <line>64</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
+          <line>188</line>
+          <properties class="TechnionTournament" method="getTopScorer">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="80" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
+        <PinnedItemInfo parentTag="DoublyLinkedList" memberName="tail" />
+        <PinnedItemInfo parentTag="TechnionTournament" memberName="PlayersByGoals" />
         <PinnedItemInfo parentTag="TwoThreeTree" memberName="rankings" />
         <PinnedItemInfo parentTag="TechnionTournament" memberName="FacultiesTreesGoals" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="facultyPlayersIDLeaf.twin.metaData" />
-        <watch expression="facultyPlayersIDLeaf.twin.metaData.root" />
+        <watch expression="tournament.PlayersByGoals" />
       </configuration>
     </watches-manager>
   </component>

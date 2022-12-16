@@ -40,8 +40,8 @@ public class Main {
         }
 
         ArrayList<Integer> away_faculty_goals = new ArrayList<>();
+        away_faculty_goals.add(4);//changed to 4-5 was 5-6
         away_faculty_goals.add(5);
-        away_faculty_goals.add(6);
 
         tournament.playGame(1,3,1,home_faculty_goals,away_faculty_goals);
         tournament.getTopScorer(player);

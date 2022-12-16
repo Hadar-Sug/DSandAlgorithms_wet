@@ -1,7 +1,7 @@
 
 public class Leaf<T> extends TreeNode{
 
-    ListNode rankTwin;
+    ListNode rankTwin = null;
     Leaf<T> twin; // will point to the twin in either the goal/points matching tree
     T metaData; // the type, and actual object of the node (player/faculty/tree...)
     String name = null;
@@ -24,6 +24,11 @@ public class Leaf<T> extends TreeNode{
         this(metaData);
         this.keyVal = new KeyVal(key,val);
         this.rankTwin = new ListNode(key,val);
+    }
+
+    public Leaf(int key, int val) {
+        this();
+        this.keyVal = new KeyVal(key,val);
     }
 
     public Leaf(T metaData, int key, int val, String name){
