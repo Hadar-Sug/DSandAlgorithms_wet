@@ -310,7 +310,7 @@ public class TechnionTournament implements Tournament{
         FacultiesTreesGoals.insert(copy);
     }
 
-    //TODO: update to facilitate the doubled player objects,
+    //TODO: copying the object maybe fucks everything up, when deleting the second time, the oarent doesnt seem to be the correct one
     /**
      * remove player from team tree and all player tree and then update his goals(key), then insert him back in
      * @param player_id player we're adding goals to

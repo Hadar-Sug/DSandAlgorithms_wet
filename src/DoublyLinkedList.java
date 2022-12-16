@@ -45,6 +45,9 @@ public class DoublyLinkedList<T> {
             insertMe.setNext(nextNode);
             if (nextNode != null)
                 nextNode.setPrev(insertMe);
+            else
+                // Update the tail if the new node is inserted after the current tail
+                tail = insertMe;
         }
     }
 

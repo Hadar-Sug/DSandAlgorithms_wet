@@ -166,7 +166,7 @@ public class TwoThreeTree<T> {
         TreeNode x = y.getParent(); //x is one level aboce the leaves, and thats where insertMe fits
 //        Leaf newLeaf = new Leaf(insertMe); // our new node is going to be a leaf no matter what
         TreeNode z = insertAndSplit(x,insertMe);
-        while (x.getKeyVal().compareTo(this.getRoot().keyVal)!=0){
+        while (x!=this.getRoot()){ //CHANGED THIS TO COMPARE OBJECTS NOT VALS
             x = x.getParent();
             if (z != null) // needed to split, so we go up the tree till we find a spot
                 z = insertAndSplit(x,z);
@@ -256,6 +256,19 @@ public class TwoThreeTree<T> {
             if(x.getChild(R)!=null){
                 setchildren(y,y.getChild(L),x.getChild(L),null);
                 setchildren(x,x.getChild(M),x.getChild(R),null);
+            }
+            else{
+                setchildren(x,y.getChild(L),x.getChild(L),y.getChild(M));
+                y=null;
+                setchildren(z,x,z.getChild(R),null);
+            }
+            return z;
+        }
+        if (y.getKeyVal().compareTo(z.getChild(M).getKeyVal())==0){
+            TreeNode x =z.getChild(L);
+            if (x.getChild(R)!=null){
+                setchildren(y,x.getChild(R),y.getChild(L),null);
+                setchildren(x,x.getChild(L),x.getChild(M),null);
             }
             else{
                 setchildren(x,x.getChild(L),x.getChild(M),y.getChild(L));
