@@ -304,10 +304,9 @@ public class TechnionTournament implements Tournament{
      * @param k points to be added
      */
     private void addPoints(Leaf<TwoThreeTree<Player>> facultyLeafPoints, int k){
-        Leaf<TwoThreeTree<Player>> copy = facultyLeafPoints.copyLeaf();
         FacultiesTreesGoals.Delete(facultyLeafPoints);
-        copy.setKeyVal(facultyLeafPoints.getKey()+k, facultyLeafPoints.getVal()); //add k points to the key, which stands for the points
-        FacultiesTreesGoals.insert(copy);
+        facultyLeafPoints.setKeyVal(facultyLeafPoints.getKey()+k, facultyLeafPoints.getVal()); //add k points to the key, which stands for the points
+        FacultiesTreesGoals.insert(facultyLeafPoints);
     }
 
     //TODO: copying the object maybe fucks everything up, when deleting the second time, the oarent doesnt seem to be the correct one
@@ -321,6 +320,23 @@ public class TechnionTournament implements Tournament{
         Leaf<Player> currentPlayerIDAll = getPlayerLeaf(player_id,playersByID);
         Leaf<Player> currentPlayerGoalsTeam = currentPlayerIDTeam.getTwin();//gets the playersGoal object
         Leaf<Player> currentPlayerGoalsAll = currentPlayerIDAll.getTwin();//gets the playersGoal object
+//        Leaf<Player> currentPlayerGoalsTeamCopy = currentPlayerGoalsTeam.copyLeaf();
+//        Leaf<Player> currentPlayerGoalsAllCopy = currentPlayerGoalsAll.copyLeaf();
+        facultyPlayersIDLeaf.getTwin().getMetaData().Delete(currentPlayerGoalsTeam);// remove player from Goals tree
+        PlayersByGoals.Delete(currentPlayerGoalsAll); // so delete from team tree and all player tree, by goals
+        currentPlayerGoalsTeam.setKeyVal(currentPlayerGoalsTeam.getKey()+1,currentPlayerGoalsTeam.getVal()); //update goals for the player
+        currentPlayerGoalsAll.setKeyVal(currentPlayerGoalsAll.getKey()+1,currentPlayerGoalsAll.getVal());
+        facultyPlayersIDLeaf.getTwin().getMetaData().insert(currentPlayerGoalsTeam);//insert back in
+        PlayersByGoals.insert(currentPlayerGoalsAll);
+    }
+}
+
+/* with copy
+ private void addGoal(Integer player_id, Leaf<TwoThreeTree<Player>> facultyPlayersIDLeaf){
+        Leaf<Player> currentPlayerIDTeam = getPlayerLeaf(player_id,facultyPlayersIDLeaf.getMetaData()); //finds the player in the team playerID tree
+        Leaf<Player> currentPlayerIDAll = getPlayerLeaf(player_id,playersByID);
+        Leaf<Player> currentPlayerGoalsTeam = currentPlayerIDTeam.getTwin();//gets the playersGoal object
+        Leaf<Player> currentPlayerGoalsAll = currentPlayerIDAll.getTwin();//gets the playersGoal object
         Leaf<Player> currentPlayerGoalsTeamCopy = currentPlayerGoalsTeam.copyLeaf();
         Leaf<Player> currentPlayerGoalsAllCopy = currentPlayerGoalsAll.copyLeaf();
         facultyPlayersIDLeaf.getTwin().getMetaData().Delete(currentPlayerGoalsTeam);// remove player from Goals tree
@@ -329,6 +345,13 @@ public class TechnionTournament implements Tournament{
         currentPlayerGoalsAllCopy.setKeyVal(currentPlayerGoalsAllCopy.getKey()+1,currentPlayerGoalsAllCopy.getVal());
         facultyPlayersIDLeaf.getTwin().getMetaData().insert(currentPlayerGoalsTeamCopy);//insert back in
         PlayersByGoals.insert(currentPlayerGoalsAllCopy);
-    }
-}
+    }*/
 
+/* addpoints with copy
+*     private void addPoints(Leaf<TwoThreeTree<Player>> facultyLeafPoints, int k){
+        Leaf<TwoThreeTree<Player>> copy = facultyLeafPoints.copyLeaf();
+        FacultiesTreesGoals.Delete(facultyLeafPoints);
+        copy.setKeyVal(facultyLeafPoints.getKey()+k, facultyLeafPoints.getVal()); //add k points to the key, which stands for the points
+        FacultiesTreesGoals.insert(copy);
+    }
+* */

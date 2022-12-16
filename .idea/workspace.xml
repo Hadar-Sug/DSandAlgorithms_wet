@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="problem with playGAme, and ranking is fucked">
+    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="fixed borrow or merge,&#10;prob an issue with copying the object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DoublyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DoublyLinkedList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TechnionTournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TechnionTournament.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TwoThreeTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TwoThreeTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670577526093</updated>
-      <workItem from="1670577526904" duration="120632000" />
+      <workItem from="1670577526904" duration="121704000" />
     </task>
     <task id="LOCAL-00001" summary="first try at generic 2-3tree, seems like a big issue actually. hopefully not too bad.">
       <created>1670606513026</created>
@@ -152,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671127248741</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fixed borrow or merge,&#10;prob an issue with copying the object">
+      <created>1671178572209</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1671178572209</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,15 +176,16 @@
     <MESSAGE value="problem insetring player number 8" />
     <MESSAGE value="maybe copying is the issue" />
     <MESSAGE value="problem with playGAme, and ranking is fucked" />
-    <option name="LAST_COMMIT_MESSAGE" value="problem with playGAme, and ranking is fucked" />
+    <MESSAGE value="fixed borrow or merge,&#10;prob an issue with copying the object" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed borrow or merge,&#10;prob an issue with copying the object" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
-          <line>171</line>
-          <option name="timeStamp" value="41" />
+          <line>174</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
