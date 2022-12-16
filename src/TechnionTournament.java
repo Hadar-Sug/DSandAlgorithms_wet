@@ -223,20 +223,13 @@ public class TechnionTournament implements Tournament{
     @Override
     public void getTopKFaculties(ArrayList<Faculty> faculties, int k, boolean ascending) {
         ListNode current = FacultiesTreesGoals.getRankings().getTail();
-        if (ascending) {
-            for (int i = k-1; i >=0; i--) { // check null?
-                Faculty faculty = new Faculty(current.getKeyVal().getVal(), current.getName());
-                faculties.set(i,faculty);
-                current = current.getPrev();
-            }
-        }
-        else{
             for (int i = 0; i < k; i++) {
                 Faculty faculty = new Faculty(current.getKeyVal().getVal(), current.getName());
-                faculties.set(i,faculty);
+                faculties.add(faculty);
                 current = current.getPrev();
             }
-        }
+            if (ascending)
+                reverseArrayList(faculties);
     }
 
     /**
@@ -248,16 +241,6 @@ public class TechnionTournament implements Tournament{
      */
     @Override
     public void getTopKScorers(ArrayList<Player> players, int k, boolean ascending) {
-        // go to all players goal rankings list and insert to the list
-//        ArrayList<Player> myPlayers = new ArrayList<Player>();
-//        if (ascending) {
-//            for (int i = k-1; i >=0; i--) { // check null?
-//                Player player = new Player(current.getKeyVal().getVal(), current.getName());
-//                myPlayers.add(player);
-//                current = current.getPrev();
-//            }
-//        }
-//        else{
             ListNode current = PlayersByGoals.getRankings().getTail();
             for (int i = 0; i < k; i++) {
                 Player player = new Player(current.getKeyVal().getVal(), current.getName());
@@ -266,7 +249,6 @@ public class TechnionTournament implements Tournament{
             }
             if (ascending)
                 reverseArrayList(players);
-//        players=myPlayers;
     }
 
     /**
