@@ -81,9 +81,9 @@ public class TechnionTournament implements Tournament{
 
         for (int i = 1; i <= 11; i++) {
             Leaf<Player> currentPlayer = facultyTreeID.selectKthLeaf(facultyTreeID.getRoot(),i);
-            Leaf<Player> currentPlayerCopy = currentPlayer.copyLeaf(); //create a copy to be added to the freeAgents tree
-            if (currentPlayerCopy != null)
-                FreeAgents.insert(currentPlayerCopy);
+//            Leaf<Player> currentPlayerCopy = currentPlayer.copyLeaf(); //create a copy to be added to the freeAgents tree
+            if (currentPlayer != null)
+                FreeAgents.insert(currentPlayer);
         }
         FacultiesTreesByID.Delete(facultyLeafID);
         FacultiesTreesGoals.Delete(facultyLeafPoints);
@@ -249,21 +249,24 @@ public class TechnionTournament implements Tournament{
     @Override
     public void getTopKScorers(ArrayList<Player> players, int k, boolean ascending) {
         // go to all players goal rankings list and insert to the list
-        ListNode current = PlayersByGoals.getRankings().getTail();
-        if (ascending) {
-            for (int i = k-1; i >=0; i--) { // check null?
-                Player player = new Player(current.getKeyVal().getVal(), current.getName());
-                players.set(i,player);
-                current = current.getPrev();
-            }
-        }
-        else{
+//        ArrayList<Player> myPlayers = new ArrayList<Player>();
+//        if (ascending) {
+//            for (int i = k-1; i >=0; i--) { // check null?
+//                Player player = new Player(current.getKeyVal().getVal(), current.getName());
+//                myPlayers.add(player);
+//                current = current.getPrev();
+//            }
+//        }
+//        else{
+            ListNode current = PlayersByGoals.getRankings().getTail();
             for (int i = 0; i < k; i++) {
                 Player player = new Player(current.getKeyVal().getVal(), current.getName());
-                players.set(i,player);
+                players.add(player);
                 current = current.getPrev();
             }
-        }
+            if (ascending)
+                reverseArrayList(players);
+//        players=myPlayers;
     }
 
     /**
@@ -329,6 +332,22 @@ public class TechnionTournament implements Tournament{
         facultyPlayersIDLeaf.getTwin().getMetaData().insert(currentPlayerGoalsTeam);//insert back in
         PlayersByGoals.insert(currentPlayerGoalsAll);
     }
+
+    public static <T> void reverseArrayList(ArrayList<T> list) {
+        // use two pointers, one at the start and one at the end
+        int start = 0;
+        int end = list.size() - 1;
+        while (start < end) {
+            // swap the elements at the start and end pointers
+            T temp = list.get(start);
+            list.set(start, list.get(end));
+            list.set(end, temp);
+            // move the pointers inward
+            start++;
+            end--;
+        }
+    }
+
 }
 
 /* with copy
