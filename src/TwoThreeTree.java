@@ -18,8 +18,8 @@ public class TwoThreeTree<T> {
      */
     public TwoThreeTree() {
         // initialize sentinels
-        this.sentinel_r = new Leaf<T>(MAX_VALUE,0);
-        this.sentinel_l = new Leaf<T>(MIN_VALUE,0);
+        this.sentinel_r = new Leaf<T>(MIN_VALUE,0);
+        this.sentinel_l = new Leaf<T>(MAX_VALUE,0);
         this.sentinel_r.setSize(0);// leaf size is default 1
         this.sentinel_l.setSize(0);
         this.root = new TreeNode();

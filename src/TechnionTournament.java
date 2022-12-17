@@ -187,8 +187,8 @@ public class TechnionTournament implements Tournament{
     //TODO: make sure tail is top scorer
     @Override
     public void getTopScorer(Player player) {
-        int player_id = PlayersByGoals.getRankings().getTail().getKeyVal().getVal();
-        String player_name = PlayersByGoals.getRankings().getTail().getName();//make sure the best player is in the tail
+        int player_id = PlayersByGoals.getRankings().getHead().getKeyVal().getVal();
+        String player_name = PlayersByGoals.getRankings().getHead().getName();//make sure the best player is in the tail
         player.setId(player_id);
         player.setName(player_name);
     }
@@ -205,8 +205,8 @@ public class TechnionTournament implements Tournament{
         // go to the team tree, find the team tehn get the rankings list for that team and put it in player
         Leaf<TwoThreeTree<Player>> facultyLeaf = getTeamLeaf(faculty_id);
         TwoThreeTree<Player> facultyPlayers = facultyLeaf.getTwin().getMetaData(); //twin holds the goal info
-        int topPlayerInFaculty_ID = facultyPlayers.getRankings().getTail().getKeyVal().getVal();
-        String topPlayerInFaculty_Name = facultyPlayers.getRankings().getTail().getName();
+        int topPlayerInFaculty_ID = facultyPlayers.getRankings().getHead().getKeyVal().getVal();
+        String topPlayerInFaculty_Name = facultyPlayers.getRankings().getHead().getName();
         player.setId(topPlayerInFaculty_ID);
         player.setName(topPlayerInFaculty_Name);
     }
@@ -222,11 +222,11 @@ public class TechnionTournament implements Tournament{
     //TODO: check null?
     @Override
     public void getTopKFaculties(ArrayList<Faculty> faculties, int k, boolean ascending) {
-        ListNode current = FacultiesTreesGoals.getRankings().getTail();
+        ListNode current = FacultiesTreesGoals.getRankings().getHead();
             for (int i = 0; i < k; i++) {
                 Faculty faculty = new Faculty(current.getKeyVal().getVal(), current.getName());
                 faculties.add(faculty);
-                current = current.getPrev();
+                current = current.getNext();
             }
             if (ascending)
                 reverseArrayList(faculties);
@@ -241,11 +241,11 @@ public class TechnionTournament implements Tournament{
      */
     @Override
     public void getTopKScorers(ArrayList<Player> players, int k, boolean ascending) {
-            ListNode current = PlayersByGoals.getRankings().getTail();
+            ListNode current = PlayersByGoals.getRankings().getHead(); // changed to head
             for (int i = 0; i < k; i++) {
                 Player player = new Player(current.getKeyVal().getVal(), current.getName());
                 players.add(player);
-                current = current.getPrev();
+                current = current.getNext();
             }
             if (ascending)
                 reverseArrayList(players);
@@ -259,8 +259,10 @@ public class TechnionTournament implements Tournament{
     @Override
     public void getTheWinner(Faculty faculty) {
         //go to the team rankings and pput the head in faculty
-        int winnerID =FacultiesTreesGoals.getRankings().getTail().getKeyVal().getVal();
-        String winnerName =FacultiesTreesGoals.getRankings().getTail().getName();
+        int winnerID =FacultiesTreesGoals.getRankings().getHead().getKeyVal().getVal();
+        String winnerName =FacultiesTreesGoals.getRankings().getHead().getName();
+//        int winnerID =FacultiesTreesGoals.getRankings().getTail().getKeyVal().getVal();
+//        String winnerName =FacultiesTreesGoals.getRankings().getTail().getName();
         faculty.setId(winnerID);
         faculty.setName(winnerName);
     }

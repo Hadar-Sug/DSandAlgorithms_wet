@@ -28,7 +28,7 @@ public class DoublyLinkedList<T> {
     }
 
     public void addNode(ListNode insertMe, ListNode afterMe) {
-        if (head == null) {
+        if (head == null) { //should probably never go in here
             // Handle case where the list is empty or the 'afterMe' node is null
             addNode(insertMe);
         }// Handle the case where afterMe is null and the list isn't empty
@@ -58,9 +58,11 @@ public class DoublyLinkedList<T> {
             setTail(addMe);
         } else {
             // Handle case where the list is not empty
-            tail.setNext(addMe);
-            addMe.setPrev(tail);
-            setTail(addMe);
+            ListNode next = getHead();
+            addMe.setPrev(null);
+            setHead(addMe);
+            addMe.setNext(next);
+            next.setPrev(addMe);
         }
     }
 

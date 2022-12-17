@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="see todo in line 86 in main">
+    <list default="true" id="1f859821-f1b3-496f-9bd0-f3ab84de17c5" name="Changes" comment="problem with rank list when two teams have the same points, it does the tiebreak the wrong way">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DoublyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DoublyLinkedList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/KeyVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/KeyVal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TechnionTournament.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TechnionTournament.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TwoThreeTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TwoThreeTree.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +74,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670577526093</updated>
-      <workItem from="1670577526904" duration="134542000" />
+      <workItem from="1670577526904" duration="138281000" />
     </task>
     <task id="LOCAL-00001" summary="first try at generic 2-3tree, seems like a big issue actually. hopefully not too bad.">
       <created>1670606513026</created>
@@ -186,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671226058025</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="problem with rank list when two teams have the same points, it does the tiebreak the wrong way">
+      <created>1671227328938</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1671227328938</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +218,8 @@
     <MESSAGE value="no more copying objects&#10;problem with input" />
     <MESSAGE value="things seem to be working, waiting on staff to fix their shit" />
     <MESSAGE value="see todo in line 86 in main" />
-    <option name="LAST_COMMIT_MESSAGE" value="see todo in line 86 in main" />
+    <MESSAGE value="problem with rank list when two teams have the same points, it does the tiebreak the wrong way" />
+    <option name="LAST_COMMIT_MESSAGE" value="problem with rank list when two teams have the same points, it does the tiebreak the wrong way" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -223,11 +233,6 @@
           <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
           <line>114</line>
           <option name="timeStamp" value="75" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/TechnionTournament.java</url>
-          <line>224</line>
-          <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
@@ -244,13 +249,26 @@
           <line>74</line>
           <option name="timeStamp" value="89" />
         </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
-        <PinnedItemInfo parentTag="DoublyLinkedList" memberName="tail" />
         <PinnedItemInfo parentTag="TechnionTournament" memberName="PlayersByGoals" />
-        <PinnedItemInfo parentTag="TwoThreeTree" memberName="rankings" />
         <PinnedItemInfo parentTag="TechnionTournament" memberName="FacultiesTreesGoals" />
         <PinnedItemInfo parentTag="TreeNode" memberName="children" />
       </pinned-members>
